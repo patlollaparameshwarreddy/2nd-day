@@ -13,7 +13,8 @@ public class Permutations
 	// Recursive function to generate all permutations of a String
 	private static void permutations(char[] ch, int currentIndex)
 	{
-		if (currentIndex == ch.length - 1) {
+		if (currentIndex == ch.length - 1) 
+		{
 			System.out.println(String.valueOf(ch));
 		}
 
@@ -21,6 +22,7 @@ public class Permutations
 		{
 			swap(ch, currentIndex, i);
 			permutations(ch, currentIndex + 1);
+			swap(ch, currentIndex, i);
 		}
 	}
 
