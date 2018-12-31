@@ -1,4 +1,5 @@
 package com.bridgelabz.util;
+import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -119,7 +120,7 @@ public class Utility
 			}
 		}
 	}
-	public static void BinarySearch()
+	public static void BinarySearchOfIntegers()
 	{
 		System.out.println("enter number of elements to enter");
 		int n = Utility.getInt();
@@ -134,12 +135,16 @@ public class Utility
 		int middle = 0;
 		System.out.println("enter search element");
 		int search = Utility.getInt();
+		long startTime = System.nanoTime();
+		long stopTime = 0;
 		while(firstIndex<=lastIndex)
 		{
+	
 			middle = (firstIndex+lastIndex)/2;
 			if(array[middle] == search)
 			{
-				System.out.println(search +"is found at "+(middle+1)+"position");
+				stopTime = System.nanoTime();
+				System.out.println("element found at "+middle);
 				break;
 			}
 			else if (search>array[middle]) 
@@ -151,9 +156,173 @@ public class Utility
 					lastIndex = middle-1;
 				}
 		}
-		System.out.println(search+" search element is founs at "+(middle+1));
+		System.out.println("time taken for searching of integer in binary search "+(stopTime-startTime));
 		
 	}
+	public static String getNextLine()
+	{
+		String s1 = scanner.nextLine();
+		return s1;
+	}
+	public static void binarySearchOfString()
+	{
+		System.out.println("enter string ");
+		String first = Utility.getNextLine();
+		String[] sort1 = first.split(" ");
+		Arrays.sort(sort1);
+		for(String k:sort1)
+		System.out.println(k);
+		System.out.println("enter string to sort");
+		String Search = Utility.getString();
+		int firstIndex = 0;
+		int lastIndex = sort1.length-1;
+		long startTime = System.nanoTime();
+		long stopTime = 0;
+		while(firstIndex<=lastIndex)
+		{
+			int mid = (lastIndex+firstIndex)/2;
+			if (Search.compareTo(sort1[mid])==0) 
+			{
+				stopTime = System.nanoTime();
+				System.out.println("search element found at "+(mid+1));
+				break;
+				
+			}
+			if (Search.compareTo(sort1[mid])>0)
+			{
+				firstIndex= mid+1;
+			}
+			else
+			{
+				lastIndex = mid-1;
+			}
+		}
+		System.out.println("time taken for searching of string in binary search "+(stopTime-startTime));
+	}
+	public static void insertionSortOfInteger() 
+	{
+		System.out.println("enter number of elements");
+		int n = Utility.getInt();
+		int[] array = new int[n];
+		System.out.println("array elements");
+		for (int i = 0; i < array.length; i++) 
+		{
+			 array[i] = Utility.getInt();
+			
+		}
+		long startTime = System.nanoTime();
+		long StopTime = 0;
+		for(int j=1;j<=array.length-1;j++)
+		{
+		   int value = array[j];
+		   int index = j;
+		   while(index>0 && array[index-1]>value)
+		   {
+			   array[index] = array[index-1];
+			   index--;
+		   }
+		   array[index]=value;
+		}
+		StopTime = System.nanoTime();
+		for (int i = 0; i < array.length; i++) 
+		{
+			 System.out.println(array[i]); 
+			
+		}
+		System.out.println("time taken for insertion sort of integer "+(StopTime-startTime));
+		
+		
+	}
+	public static void insertionSortOfString() 
+	{
+		System.out.println("enter string ");
+		String enteredString = Utility.getNextLine();
+		String[] arrayString = enteredString.split(" ");
+		Arrays.sort(arrayString);
+		long startTime = System.nanoTime();
+		long StopTime = 0;
+		for(int i = 1;i<=arrayString.length-1;i++)
+		{
+			String first = arrayString[i];
+			int index = i;
+			while((index>0) && (arrayString[index-1].compareTo(arrayString[index])>0))
+			{
+				arrayString[index] = arrayString[index-1];
+				index-=1;
+			}
+			arrayString[index] = first;
+		}
+		StopTime = System.nanoTime();
+		for(int j=0 ; j<= arrayString.length-1 ;j++)
+		{
+			System.out.println(arrayString[j]);
+		}
+		
+		System.out.println("time taken for insertion sort of String "+(StopTime-startTime));
+	}
+	public static void bubbleSortOfInteger() 
+	{
+		System.out.println("enter number of intergers");
+		int n = Utility.getInt();
+		int[] array = new int[n];
+		System.out.println("enter integers");
+		for(int i=0 ;i<=array.length-1; i++)
+		{
+			array[i] = Utility.getInt();
+			
+		}
+		long startTime = System.nanoTime();
+		long StopTime = 0;
+		for(int j=0;j<=array.length-1;j++)
+		{
+			for(int k=0;k<=array.length-2;k++)
+			{
+				if(array[k]>array[k+1])
+				{
+					int temp = array[k];
+					array[k] = array[k+1];
+					array[k+1] = temp;
+				}
+			}
+		}
+		StopTime = System.nanoTime();
+		for(int index = 0;index<=array.length-1;index++)
+		{
+			System.out.println(array[index]);
+		}
+		System.out.println("time taken for bubble sort of integer "+(StopTime-startTime));
+		
+	}
+	public static void bubbleSortOfString()
+	{
+		System.out.println("enter string");
+		String EnteredString = Utility.getNextLine();
+		String[] array = EnteredString.split(" ");
+		long startTime = System.nanoTime();
+		long StopTime = 0;
+				for(int j=0;j<=array.length-1;j++)
+				{
+					for(int k=0;k<=array.length-2;k++)
+					{
+						if(array[k].compareTo(array[k+1])>0)
+						{
+							String temp = array[k];
+							array[k] = array[k+1];
+							array[k+1] = temp;
+						}
+					}
+				}
+				StopTime = System.nanoTime();
+				for(int index = 0;index<=array.length-1;index++)
+				{
+					System.out.println(array[index]);
+				}	
+				System.out.println("time taken for bubble sort of String "+(StopTime-startTime));
+	}
+
+
+		
+	
 }
 	
 			
