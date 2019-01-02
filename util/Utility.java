@@ -1,7 +1,11 @@
 package com.bridgelabz.util;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
+
+import javax.rmi.CORBA.Util;
 
 public class Utility 
 {
@@ -319,9 +323,165 @@ public class Utility
 				}	
 				System.out.println("time taken for bubble sort of String "+(StopTime-startTime));
 	}
-
-
+public static void binarySearchOfAStringInaFile() throws FileNotFoundException
+{
+	File file = new File("/home/admin1/Desktop/newfile.txt");
+	Scanner scanner =new Scanner(file);
+	String name = scanner.nextLine();
+	String[] array = name.split(",");
+	Arrays.sort(array);
+	System.out.println("enter search element");
+	String search = Utility.getString();
+	int firstIndex = 0;
+	int lastIndex = array.length-1;
+	while(firstIndex<=lastIndex)
+	{
+		int middle = (firstIndex+lastIndex)/2;
+		if(search.compareTo(array[middle])==0)
+		{
+			System.out.println("the element fount at "+(middle));
+			break;
+		}
+		else if (search.compareTo(array[middle])>0) 
+		{
+			firstIndex = middle+1;
+		}
+		else
+		{
+			lastIndex = middle-1;
+		}	
 		
+	}
+}
+public  static boolean getBoolean()
+{
+	boolean b = scanner.nextBoolean();
+	return b;
+}
+
+	public static void temperatureConertion() 
+	{
+		System.out.println("enter 1 to convert Celsius to Fahrenheit or enter 2 to convert Fahrenheit to Celsius ");
+		int i = Utility.getInt();
+		switch (i) 
+		{
+		case 1:
+			System.out.println("enter temperature in Celsius");
+			double c = Utility.getDouble();
+			double f = (c*9/5)+32;
+			System.out.println("temperature in fahrenheit is "+f);
+			
+			break;
+		case 2:
+			System.out.println("enter temperature in Fahrenheit ");
+			int f1 = Utility.getInt();
+			int c1 = (f1-32)*5/9;
+			System.out.println("temperature in Celsius  is "+c1);
+			
+			break;
+			
+
+		default:
+			break;
+		}	
+	}
+	public static void dayOfWeek() 
+	{
+		String[] week = {"Sunday","monday","tuesday","wednesday","thrusday","friday","saturday"};
+		System.out.println("enter year");
+		int y = Utility.getInt();
+		System.out.println("enter month");
+		int m = Utility.getInt();
+		System.out.println("enter day");
+		int d = Utility.getInt();
+		int y0 = y-(14-m)/12;
+		int x = y0+(y0/4)-(y0/100)+(y0/400);
+		int m0 = m+(12*((14-m)/12))-2;
+		int d0 = (d+x+(31*m0)/12)%7;
+		System.out.println(week[d0]);
+	}
+	public static void monthlyPayments()
+	{
+		System.out.println("enter principle");
+		int p = Utility.getInt();
+		System.out.println("enter year");
+		int y = Utility.getInt();
+		System.out.println("enter rate of intrest");
+		double R = Utility.getDouble();
+		int n = 12*y;
+		double r = R/(12*100);
+		double payment = (p*r)/(1-Math.pow(1+r,-n));
+		System.out.println("monthlypayment is "+payment);
+	}
+	public static void toBinary() 
+	{
+		System.out.println("enter decimal number");
+		int number = Utility.getInt();
+		int temp = number;
+		int rem;
+		String result = "" ;
+		int decimal = 0;
+		while(number>=1)
+		{
+			rem = number%2;
+			result = rem+result;
+			number = number/2;
+		}
+		System.out.println("binary representation of "+temp+" is "+result);
+		int index = 0;
+		for(int i=result.length()-1;i>=0;i--)
+		{
+			char output = result.charAt(index);
+			index++;
+			int convertedNumber = Character.getNumericValue(output);
+			decimal = (int) (convertedNumber*Math.pow(2, i)+decimal);
+			
+		}
+		
+		if (temp==decimal)
+		{
+			System.out.println("decimal and binary numbers are equal");
+		}
+		else 
+		{
+			System.out.println("decimal and binary numbers are not equal");
+		}
+	}
+	public static void toBinary1()
+	{
+		System.out.println("enter decimal number");
+		int number = Utility.getInt();
+		int temp = number;
+		int rem;
+		String result = "" ;
+		int decimal = 0;
+		while(number>=1)
+		{
+			rem = number%2;
+			result = rem+result;
+			number = number/2;
+		}
+		result = 0+result;
+		//System.out.println(result);
+		String nibble1 = result.substring(0,4);
+		//System.out.println(nibble1);
+		String nibble2 = result.substring(4);
+		//System.out.println(nibble2);
+		String newBinary = nibble2.concat(nibble1);
+		//System.out.println(newBinary);
+		int index = 0;
+		int sum = 0;
+		for(int i=newBinary.length()-1;i>=0;i--)
+		{
+			char j = newBinary.charAt(index);
+			index++;
+			int num = Character.getNumericValue(j);
+			sum = (int) (num*Math.pow(2, i)+sum);
+			
+		}
+		System.out.println(sum);
+	}
+	
 	
 }
 	

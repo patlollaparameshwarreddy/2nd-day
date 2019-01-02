@@ -8,12 +8,12 @@ public class SearchAndSort
 	public static void main(String[] args) 
 	{
 		
-		Utility.BinarySearchOfIntegers();
+		//Utility.BinarySearchOfIntegers();
 		Utility.binarySearchOfString();
-		Utility.insertionSortOfInteger();
-		Utility.insertionSortOfString();
-		Utility.bubbleSortOfInteger();
-		Utility.bubbleSortOfString();
+		//Utility.insertionSortOfInteger();
+		//Utility.insertionSortOfString();
+		//Utility.bubbleSortOfInteger();
+		//Utility.bubbleSortOfString();
 	}
 }
 		
