@@ -1,5 +1,7 @@
 package com.bridgelabz.algorithm;
 
+import java.util.ArrayList;
+
 import com.bridgelabz.util.Utility;
 
 public class PrimeNumbers 
@@ -8,7 +10,9 @@ public class PrimeNumbers
 	{
 		System.out.println("enter a range to find prime numbers");
 		int range =  Utility.getInt();
-		Utility.primeFactor1(range);
+		ArrayList<Integer> arrayList = Utility.primeFactor1(range);
+		System.out.println(arrayList);
+		
 		
 	}
 

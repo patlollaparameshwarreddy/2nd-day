@@ -1,6 +1,9 @@
 package com.bridgelabz.util;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
@@ -106,8 +109,9 @@ public class Utility
 		double effectiveTemperature = (35.74+(0.6215*t)+((0.4275*t)-35075)*(Math.pow(v, 0.16)));
 		System.out.println("the wind chill "+effectiveTemperature);
 	}
-	public static void primeFactor1(int number) 
+	public static ArrayList<Integer> primeFactor1(int number) 
 	{
+		ArrayList< Integer> arrayList = new ArrayList<>();
 		for(int i=1;i<=number;i++)
 		{
 			int count=0;
@@ -120,9 +124,11 @@ public class Utility
 			}
 			if (count==2)
 			{
-				System.out.print(i+" ");
+				arrayList.add(i);
 			}
 		}
+		return arrayList;
+		
 	}
 	public static void BinarySearchOfIntegers()
 	{
@@ -481,6 +487,173 @@ public  static boolean getBoolean()
 		}
 		System.out.println(sum);
 	}
+public static void binarySearchThroughFile() throws FileNotFoundException
+{
+	File file = new File("/home/admin1/Downloads/test.txt");
+	Scanner scanner = new Scanner(file);
+	int[] array = new int[100];
+	int index=0;
+	while(scanner.hasNextInt())
+	{
+		array[index] = scanner.nextInt();
+		index++;
+	}
+	for(int i=0;i<=index-1;i++)
+	{
+		for (int j = 0; j <=index-2; j++) 
+		{
+			if (array[j]>array[j+1]) 
+			{
+				int temp = array[j];
+				array[j]= array[j+1];
+				array[j+1]=temp;
+				
+			}
+		}
+	}
+	for(int i=0;i<=index-1;i++)
+	{
+		System.out.println(array[i]);
+	}
+	
+}
+public static void insertionSortOfAFile() throws IOException
+{
+	File file = new File("/home/admin1/Downloads/insertionsortfile.txt");
+	file.createNewFile();
+	FileWriter fileWriter = new FileWriter(file);
+	fileWriter.write("mno ijk abc xyz pqr efg ");
+	fileWriter.flush();
+	fileWriter.close();
+	Scanner scanner = new Scanner(file);
+	String input = scanner.nextLine();
+	String[] inpurtSort  = input.split(" ");
+	Arrays.sort(inpurtSort);
+	for(int i=1;i<=inpurtSort.length-1;i++)
+	{
+		String value = inpurtSort[i];
+		int index = i;
+		while(index>0 && inpurtSort[index-1].compareTo(inpurtSort[index])>1)
+		{
+			inpurtSort[index] = inpurtSort[index-1];
+			index--;
+		}
+		inpurtSort[index] = value;
+		
+	}
+	for(String k:inpurtSort)
+	{
+		System.out.println(k);
+	}
+	
+}
+public static void sqrt()
+{
+	System.out.println("enter number");
+	double c = Utility.getDouble();
+    double epsilon = 1e-15;  
+     double t = c;              
+    while (Math.abs(t - c/t) > epsilon*t) {
+        t = (c/t + t) / 2.0;
+    }
+
+    System.out.println(t);
+
+}
+public static void palindromeOfPrimeNumbers()
+{
+	System.out.println("enter a range to find palindrome prime numbers");
+	int range =  Utility.getInt();
+	ArrayList<Integer> arrayList = Utility.primeFactor1(range);
+	System.out.println("prime numbers");
+	System.out.println(arrayList);
+	System.out.println("====================================================");
+	System.out.println("palindrome prime numbers");
+	System.out.println("====================================================");
+	for(int i=0;i<=arrayList.size()-1;i++)
+	{
+		int result = 0;
+		int num = arrayList.get(i);
+		int temp = num;
+		if(num>=2 && num<=9)
+		{
+			result = num;
+		}
+		else 
+		{
+			while(num>=1)
+			{
+				int rem = num%10;
+				result = (result*10)+rem;
+				num = num/10;
+			}
+		}
+		if(result==temp)
+		{
+			System.out.println(result+" ");
+		}
+	}
+
+}
+public static void anagramOfPrimeNumbers()
+{
+	System.out.println("enter a range to find palindrome prime numbers");
+	int range =  Utility.getInt();
+	ArrayList<Integer> arrayList = Utility.primeFactor1(range);
+	System.out.println("====================================================");
+	System.out.println("prime numbers that are Anagram  ");
+	System.out.println("====================================================");
+	for(int i=0;i<=arrayList.size()-1;i++)
+	{
+		for(int j=i+1;j<=arrayList.size()-1;j++)
+		{
+			int pro1=1,pro2=1;
+			int num1 = arrayList.get(i);
+			int temp = num1;
+			//System.out.println(temp);
+			int num2 = arrayList.get(j);
+			int temp1 = num2;
+			//System.out.println(temp1);
+			//System.out.println("============");
+			if(num1!=num2)
+			{
+				String s1 = num1+"";
+				String s2 = num2+"";
+				if(s1.length()==s2.length())
+				{
+			while(num1>=1)
+			{
+				int rem = num1%10;
+				pro1 = pro1*rem;
+				num1=num1/10;
+			}
+			while(num2>=1)
+			{
+				int rem = num2%10;
+				pro2 = pro2*rem;
+				num2=num2/10;
+			}
+			if(pro1==pro2)
+			{
+				int num = temp1;
+				int result=0;
+				while(num>=1)
+				{
+					int rem = num%10;
+					result = (result*10)+rem;
+					num = num/10;
+				}
+				if(temp==result)
+				System.out.println(temp+" "+temp1);
+			}
+			}
+			}
+			
+		}
+		
+	}
+
+}
 	
 	
 }
